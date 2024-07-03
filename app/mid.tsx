@@ -19,12 +19,19 @@ import fashoin1 from "@/assetss/fashoin1.jpg";
 import fashoin2 from "@/assetss/fashoin2.webp";
 import fashoin3 from "@/assetss/fashoin3.webp";
 import fashoin4 from "@/assetss/fashoin4.jpg";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 interface MidProps {
   setRightContent: (content: string) => void;
 }
 
 const Mid: React.FC<MidProps> = ({ setRightContent }) => {
+
+  const bannerSettings = useSelector((state: RootState) => state.styleSettings.banners);
+  const categoriesSettings = useSelector((state: RootState) => state.styleSettings.categories);
+  const productsSettings = useSelector((state: RootState) => state.styleSettings.products);
+
   const carouselItems = [
     { id: 1, imageUrl: Men, title: "Men" },
     { id: 2, imageUrl: Women, title: "Women" },
@@ -74,12 +81,17 @@ const Mid: React.FC<MidProps> = ({ setRightContent }) => {
   return (
     <div className="m-4 max-h-screen overflow-auto">
       <div className="container mx-auto p-4">
-        <div
-          onClick={() => setRightContent("header")}
-          className="cursor-pointer"
-        >
-          <Header />
-        </div>
+        {bannerSettings.show ?
+          <div
+            onClick={() => setRightContent("header")}
+            className="cursor-pointer"
+          >
+            <Header bannerSettings={bannerSettings}/>
+          </div>
+          :
+          <div>Hidden banner</div>
+        }
+
 
         <section className="mt-8 category cursor-pointer w-full">
           <h2 className="text-xl font-bold mb-4">Shop By Category</h2>

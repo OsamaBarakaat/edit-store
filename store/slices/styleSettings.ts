@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface StyleSettingsState {
   banners: {
     show: boolean;
+    showBgOverlay: boolean;
     showButton: boolean;
     showDescription: boolean;
     showTitle: boolean;
@@ -37,6 +38,7 @@ export interface StyleSettingsState {
 export const initialState: StyleSettingsState = {
   banners: {
     show: true,
+    showBgOverlay: true,
     showButton: true,
     showDescription: true,
     showTitle: true,
