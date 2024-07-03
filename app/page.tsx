@@ -12,60 +12,41 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import Left from "./left";
+import Mid from "./mid";
+import Right from "./right";
+import { useState } from "react";
 
 export default function Home() {
+  const [rightContent, setRightContent] = useState("default");
   return (
     <main>
       <div className="flex justify-between gap-4 m-4">
         <ResizablePanelGroup direction="horizontal">
           <ResizablePanel>
-            <Card className="w-full">
-              <CardHeader>
-                <CardTitle>Card Title</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Card Content</p>
-              </CardContent>
-              <CardFooter>
-                <p>Card Footer</p>
-              </CardFooter>
-            </Card>
+            <Left />
           </ResizablePanel>
           <ResizableHandle />
           <ResizablePanel>
-            <Card className="w-full">
-              <CardHeader>
-                <CardTitle>Card Title</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Card Content</p>
-              </CardContent>
-              <CardFooter>
-                <p>Card Footer</p>
-              </CardFooter>
-            </Card>
+            <div
+              // onClick={() => {
+              //   setShowRight(!showRight);
+              // }}
+              className="cursor-pointer"
+            >
+              <Mid setRightContent={setRightContent} />
+            </div>
           </ResizablePanel>
           <ResizableHandle />
+          {/* {showRight && ( */}
           <ResizablePanel>
-            <Card className="w-full">
-              <CardHeader>
-                <CardTitle>Card Title</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Card Content</p>
-              </CardContent>
-              <CardFooter>
-                <p>Card Footer</p>
-              </CardFooter>
-            </Card>
+            <Right content={rightContent} />
           </ResizablePanel>
+          {/* )} */}
         </ResizablePanelGroup>
       </div>
       <div className="font-bold text-center text-3xl text-white">
-        Shadcn ui uploaded
+        Edit ur store
       </div>
     </main>
   );
