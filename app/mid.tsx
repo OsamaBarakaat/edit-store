@@ -74,11 +74,14 @@ const Mid: React.FC<MidProps> = ({ setRightContent }) => {
   return (
     <div className="m-4 max-h-screen overflow-auto">
       <div className="container mx-auto p-4">
-        <div onClick={() => setRightContent("header")}>
+        <div
+          onClick={() => setRightContent("header")}
+          className="cursor-pointer"
+        >
           <Header />
         </div>
 
-        <section className="mt-8 category">
+        <section className="mt-8 category cursor-pointer w-full">
           <h2 className="text-xl font-bold mb-4">Shop By Category</h2>
           <div className="flex justify-center items-center w-full">
             <Carousel className="w-full max-w-xs" opts={{ align: "start" }}>

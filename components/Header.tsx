@@ -14,7 +14,7 @@ const Header = () => {
         className="rounded-lg"
       />
       <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
-        <h1 className="text-white text-2xl sm:text-4xl font-bold font-serif text-center">
+        <h1 className="text-white text-2xl sm:text-4xl font-extralight text-center p-4 ">
           Frequently Asked Questions
         </h1>
       </div>

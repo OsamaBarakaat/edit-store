@@ -13,7 +13,7 @@ const Left = () => {
   return (
     <main className="w-full min-h-screen max-h-screen overflow-auto p-4">
       <div className="Banners">
-        <div className="head">
+        <div className="head m-2 p-2">
           <p className="text-start text-3xl">Banners</p>
         </div>
         <div className="body flex justify-between items-center my-4 gap-2 flex-wrap">
@@ -57,7 +57,7 @@ const Left = () => {
       </div>
       <Separator />
       <div className="Categories">
-        <div className="head">
+        <div className="head m-2 p-2">
           <p className="text-start text-3xl">Categories</p>
         </div>
         <div className="body flex justify-between items-center my-4 gap-2 flex-wrap">
@@ -102,7 +102,7 @@ const Left = () => {
       <Separator />
 
       <div className="Products">
-        <div className="head">
+        <div className="head m-2 p-2">
           <p className="text-start text-3xl">Products</p>
         </div>
         <div className="body flex justify-between items-center my-4 gap-2 flex-wrap">
