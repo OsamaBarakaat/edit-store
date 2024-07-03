@@ -72,7 +72,7 @@ const Mid: React.FC<MidProps> = ({ setRightContent }) => {
   ];
 
   return (
-    <div className="m-4">
+    <div className="m-4 max-h-screen overflow-auto">
       <div className="container mx-auto p-4">
         <div onClick={() => setRightContent("header")}>
           <Header />
@@ -102,7 +102,6 @@ const Mid: React.FC<MidProps> = ({ setRightContent }) => {
           className="mt-8 cursor-pointer"
           onClick={() => setRightContent("products")}
         >
-          <h2 className="text-xl font-bold mb-4">New Arrivals</h2>
           <div className="flex flex-col  gap-4">
             {products.map((product) => (
               <ProductCard

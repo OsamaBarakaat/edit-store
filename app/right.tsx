@@ -191,13 +191,6 @@ const Right: React.FC<RightProps> = ({ content }) => {
             </div>
 
             <Separator />
-
-            <div className="grid gap-1.5">
-              <Label htmlFor="products-head">
-                You want to change "New Arrivals" ?
-              </Label>
-              <Input id="products-head" placeholder="Enter new head" />
-            </div>
           </div>
         </div>
       );

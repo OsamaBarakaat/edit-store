@@ -19,13 +19,11 @@ const ProductCard: FC<ProductCardProps> = ({
 }) => {
   return (
     <div className="flex p-4 bg-white rounded-lg shadow-lg">
-      <div className="flex-shrink-0">
+      <div className="w-52 h-52">
         <Image
           src={imageUrl}
           alt={title}
-          width={100}
-          height={100}
-          className="rounded-lg"
+          className="object-cover w-full h-full "
         />
       </div>
       <div className="ml-4">
