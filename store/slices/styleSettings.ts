@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface StyleSettingsState {
   banners: {
-    show: boolean;
+    show: boolean | null;
     showBgOverlay: boolean;
     showButton: boolean;
     showDescription: boolean;
@@ -11,18 +11,20 @@ export interface StyleSettingsState {
     titleColor: string | null;
     descriptionColor: string | null;
     locations: string | null;
+    uploadedToLeftSection: boolean;
   },
   categories: {
-    show: boolean;
+    show: boolean | null;
     showTitle: boolean;
     showCategoryItemName: boolean;
     title: string | null;
     titleColor: string | null;
     itemNameColor: string | null;
     categoryItemDesign: string | null;
+    uploadedToLeftSection: boolean;
   },
   products: {
-    show: boolean;
+    show: boolean | null;
     showTitle: boolean;
     showItemDescription: boolean;
     title: string | null;
@@ -32,6 +34,7 @@ export interface StyleSettingsState {
     itemNameColor: string | null;
     itemDescriptionColor: string | null;
     itemPriceColor: string | null;
+    uploadedToLeftSection: boolean;
   },
 }
 
@@ -42,31 +45,34 @@ export const initialState: StyleSettingsState = {
     showButton: true,
     showDescription: true,
     showTitle: true,
-    buttonColor: null,
-    titleColor: null,
-    descriptionColor: null,
+    buttonColor: 'white',
+    titleColor: 'white',
+    descriptionColor: 'white',
     locations: null,
+    uploadedToLeftSection: false,
   },
   categories: {
     show: true,
     showTitle: true,
     showCategoryItemName: true,
-    title: null,
-    titleColor: null,
-    itemNameColor: null,
+    title: "Shop By Category",
+    titleColor: 'black',
+    itemNameColor: 'black',
     categoryItemDesign: null,
+    uploadedToLeftSection: false,
   },
   products: {
     show: true,
     showTitle: true,
     showItemDescription: true,
-    title: null,
-    titleColor: null,
+    title: 'On Selling Products',
+    titleColor: 'black',
     cardDesign: null,
-    cardBackgroundColor: null,
-    itemNameColor: null,
-    itemDescriptionColor: null,
-    itemPriceColor: null,
+    cardBackgroundColor: 'white',
+    itemNameColor: 'black',
+    itemDescriptionColor: 'black',
+    itemPriceColor: 'black',
+    uploadedToLeftSection: false,
   }
 };
 
@@ -76,15 +82,12 @@ const styleSettingsSlice = createSlice({
   reducers: {
     updateBanners(state, action: PayloadAction<Partial<StyleSettingsState['banners']>>) {
       state.banners = { ...state.banners, ...action.payload };
-      console.log('action.payload',action.payload)
     },
     updateCategories(state, action: PayloadAction<Partial<StyleSettingsState['categories']>>) {
       state.categories = { ...state.categories, ...action.payload };
-      console.log('action.payload',action.payload)
     },
     updateProducts(state, action: PayloadAction<Partial<StyleSettingsState['products']>>) {
       state.products = { ...state.products, ...action.payload };
-      console.log('action.payload',action.payload)
     },
   },
 });

@@ -33,11 +33,13 @@ const Header: React.FC<HeaderProps> = ({ bannerSettings }) => {
       <div className={`
       absolute inset-0 flex flex-col justify-center rounded-lg 
         ${bannerSettings.showBgOverlay ? 'bg-black bg-opacity-50' : ''}
+        
         ${bannerSettings.locations ?
           `items-${bannerSettings.locations}`
           : 'items-center'
         }
-        `}>
+        `
+        }>
         {bannerSettings.showTitle &&
           <h1 className="text-2xl font-bold text-center px-4 "
             style={{ color: bannerSettings.titleColor ? bannerSettings.titleColor : 'white' }}>

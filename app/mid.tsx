@@ -10,7 +10,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Men from "@/assetss/men.jpg";
-import Women from "@/assetss/image.jpg";
 import Kids from "@/assetss/kids.jpg";
 import Watch from "@/assetss/6166QQmf+YL._AC_UY1000_.jpg";
 import Accessories from "@/assetss/accessories-make-or-break-1100x733.jpg";
@@ -34,7 +33,6 @@ const Mid: React.FC<MidProps> = ({ setRightContent }) => {
 
   const carouselItems = [
     { id: 1, imageUrl: Men, title: "Men" },
-    { id: 2, imageUrl: Women, title: "Women" },
     { id: 3, imageUrl: Kids, title: "Kids" },
     { id: 4, imageUrl: Watch, title: "Watch" },
     { id: 5, imageUrl: Accessories, title: "Accessories" },
@@ -86,50 +84,66 @@ const Mid: React.FC<MidProps> = ({ setRightContent }) => {
             onClick={() => setRightContent("header")}
             className="cursor-pointer"
           >
-            <Header bannerSettings={bannerSettings}/>
+            <Header bannerSettings={bannerSettings} />
           </div>
           :
           <div>Hidden banner</div>
         }
-
-
-        <section className="mt-8 category cursor-pointer w-full">
-          <h2 className="text-xl font-bold mb-4">Shop By Category</h2>
-          <div className="flex justify-center items-center w-full">
-            <Carousel className="w-full max-w-xs" opts={{ align: "start" }}>
-              <CarouselContent>
-                {carouselItems.map((item, index) => (
-                  <CarouselItem
-                    key={index}
-                    className="md:basis-1/2 lg:basis-1/3"
-                    onClick={() => setRightContent("category")}
-                  >
-                    <CategoryCard imageUrl={item.imageUrl} title={item.title} />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
-          </div>
-        </section>
-        <section
-          className="mt-8 cursor-pointer"
-          onClick={() => setRightContent("products")}
-        >
-          <div className="flex flex-col  gap-4">
-            {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                imageUrl={product.imageUrl}
-                title={product.title}
-                description={product.description}
-                price={product.price}
-                originalPrice={product.originalPrice}
-              />
-            ))}
-          </div>
-        </section>
+        {categoriesSettings.show ?
+          <section className="mt-8 category cursor-pointer w-full">
+            {categoriesSettings.showTitle &&
+              <h2 className="text-xl font-bold mb-4"
+              style={{color: categoriesSettings.titleColor || 'black'}}
+              >{categoriesSettings.title}</h2>
+            }
+            <div className="flex justify-center items-center w-full">
+              <Carousel className="w-full max-w-xs" opts={{ align: "start" }}>
+                <CarouselContent>
+                  {carouselItems.map((item, index) => (
+                    <CarouselItem
+                      key={index}
+                      className="md:basis-1/2 lg:basis-1/3"
+                      onClick={() => setRightContent("category")}
+                    >
+                      <CategoryCard imageUrl={item.imageUrl} title={item.title} categoriesSettings={categoriesSettings} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+            </div>
+          </section>
+          :
+          <div>Hidden categories</div>
+        }
+        {productsSettings.show ?
+          <section
+            className="mt-8 cursor-pointer"
+            onClick={() => setRightContent("products")}
+          >
+            {productsSettings.showTitle &&
+              <h2 className="text-xl font-bold mb-4"
+              style={{color: productsSettings.titleColor || 'black'}}
+              >{productsSettings.title}</h2>
+            }
+            <div className="flex flex-col  gap-4">
+              {products.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  imageUrl={product.imageUrl}
+                  title={product.title}
+                  description={product.description}
+                  price={product.price}
+                  originalPrice={product.originalPrice}
+                  productsSettings={productsSettings}
+                />
+              ))}
+            </div>
+          </section>
+          :
+          <div>Hidden products</div>
+        }
       </div>
     </div>
   );

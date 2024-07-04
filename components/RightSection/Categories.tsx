@@ -30,7 +30,7 @@ const Categories: React.FC = () => {
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="rounded"
-                checked={categoriesSettings.show}
+                checked={categoriesSettings.show || false}
                 onCheckedChange={() => {
                   dispatch(updateCategories({ show: !(categoriesSettings.show) }));
                 }}
@@ -141,13 +141,13 @@ const Categories: React.FC = () => {
                   Category Design
                 </label>
                 <Select
-                  value={categoriesSettings.categoryItemDesign || undefined}
-                  onValueChange={(value: string | undefined) => {
+                  value={categoriesSettings.categoryItemDesign || 'square'}
+                  onValueChange={(value: string) => {
                     dispatch(updateCategories({ categoryItemDesign: value || null }));
                   }}
                 >
                   <SelectTrigger className="w-100">
-                    <SelectValue placeholder="Choose location" />
+                    <SelectValue placeholder="Choose Design" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="square">Square</SelectItem>

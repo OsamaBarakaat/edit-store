@@ -30,7 +30,7 @@ const Products: React.FC = () => {
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="rounded"
-                checked={productsSettings.show}
+                checked={productsSettings.show || false}
                 onCheckedChange={() => {
                   dispatch(updateProducts({ show: !(productsSettings.show) }));
                 }}
