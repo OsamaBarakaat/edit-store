@@ -20,16 +20,22 @@ import fashoin3 from "@/assetss/fashoin3.webp";
 import fashoin4 from "@/assetss/fashoin4.jpg";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import Autoplay from "embla-carousel-autoplay";
 
 interface MidProps {
   setRightContent: (content: string) => void;
 }
 
 const Mid: React.FC<MidProps> = ({ setRightContent }) => {
-
-  const bannerSettings = useSelector((state: RootState) => state.styleSettings.banners);
-  const categoriesSettings = useSelector((state: RootState) => state.styleSettings.categories);
-  const productsSettings = useSelector((state: RootState) => state.styleSettings.products);
+  const bannerSettings = useSelector(
+    (state: RootState) => state.styleSettings.banners
+  );
+  const categoriesSettings = useSelector(
+    (state: RootState) => state.styleSettings.categories
+  );
+  const productsSettings = useSelector(
+    (state: RootState) => state.styleSettings.products
+  );
 
   const carouselItems = [
     { id: 1, imageUrl: Men, title: "Men" },
@@ -47,6 +53,7 @@ const Mid: React.FC<MidProps> = ({ setRightContent }) => {
       description: "Zara provides only the highest-quality selection.",
       price: "KWD 12.00",
       originalPrice: "KWD 16.00",
+      cardType: "longwise",
     },
     {
       id: 2,
@@ -56,6 +63,7 @@ const Mid: React.FC<MidProps> = ({ setRightContent }) => {
         "Self-striped knitted midi A-line dress, has a scoop collar.",
       price: "KWD 12.30",
       originalPrice: "KWD 16.38",
+      cardType: "crosswise",
     },
     {
       id: 3,
@@ -65,6 +73,7 @@ const Mid: React.FC<MidProps> = ({ setRightContent }) => {
         "Off-white self-striped knitted midi A-line dress has a scoop collar.",
       price: "KWD 15.00",
       originalPrice: "",
+      cardType: "crosswise",
     },
     {
       id: 4,
@@ -73,31 +82,44 @@ const Mid: React.FC<MidProps> = ({ setRightContent }) => {
       description: "Zara provides only the highest-quality selection.",
       price: "KWD 12.00",
       originalPrice: "KWD 16.00",
+      cardType: "longwise",
     },
   ];
 
   return (
     <div className="m-4 max-h-screen overflow-auto">
       <div className="container mx-auto p-4">
-        {bannerSettings.show ?
+        {bannerSettings.show ? (
           <div
             onClick={() => setRightContent("header")}
             className="cursor-pointer"
           >
             <Header bannerSettings={bannerSettings} />
           </div>
-          :
+        ) : (
           <div>Hidden banner</div>
-        }
-        {categoriesSettings.show ?
+        )}
+        {categoriesSettings.show ? (
           <section className="mt-8 category cursor-pointer w-full">
-            {categoriesSettings.showTitle &&
-              <h2 className="text-xl font-bold mb-4"
-              style={{color: categoriesSettings.titleColor || 'black'}}
-              >{categoriesSettings.title}</h2>
-            }
-            <div className="flex justify-center items-center w-full">
-              <Carousel className="w-full max-w-xs" opts={{ align: "start" }}>
+            {categoriesSettings.showTitle && (
+              <h2
+                className="text-xl font-bold mb-4"
+                style={{ color: categoriesSettings.titleColor || "black" }}
+              >
+                {categoriesSettings.title}
+              </h2>
+            )}
+            <div className="relative w-full ">
+              <Carousel
+                className="w-full"
+                opts={{ align: "start", loop: true }}
+                plugins={[
+                  Autoplay({
+                    delay: 2000,
+                    stopOnMouseEnter: true,
+                  }),
+                ]}
+              >
                 <CarouselContent>
                   {carouselItems.map((item, index) => (
                     <CarouselItem
@@ -105,28 +127,35 @@ const Mid: React.FC<MidProps> = ({ setRightContent }) => {
                       className="md:basis-1/2 lg:basis-1/3"
                       onClick={() => setRightContent("category")}
                     >
-                      <CategoryCard imageUrl={item.imageUrl} title={item.title} categoriesSettings={categoriesSettings} />
+                      <CategoryCard
+                        imageUrl={item.imageUrl}
+                        title={item.title}
+                        categoriesSettings={categoriesSettings}
+                      />
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious className="absolute left-0 top-12" />
+                <CarouselNext className="absolute right-0 top-12" />
               </Carousel>
             </div>
           </section>
-          :
+        ) : (
           <div>Hidden categories</div>
-        }
-        {productsSettings.show ?
+        )}
+        {productsSettings.show ? (
           <section
             className="mt-8 cursor-pointer"
             onClick={() => setRightContent("products")}
           >
-            {productsSettings.showTitle &&
-              <h2 className="text-xl font-bold mb-4"
-              style={{color: productsSettings.titleColor || 'black'}}
-              >{productsSettings.title}</h2>
-            }
+            {productsSettings.showTitle && (
+              <h2
+                className="text-xl font-bold mb-4"
+                style={{ color: productsSettings.titleColor || "black" }}
+              >
+                {productsSettings.title}
+              </h2>
+            )}
             <div className="flex flex-col  gap-4">
               {products.map((product) => (
                 <ProductCard
@@ -141,9 +170,9 @@ const Mid: React.FC<MidProps> = ({ setRightContent }) => {
               ))}
             </div>
           </section>
-          :
+        ) : (
           <div>Hidden products</div>
-        }
+        )}
       </div>
     </div>
   );

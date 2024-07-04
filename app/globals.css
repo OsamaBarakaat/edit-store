@@ -115,3 +115,15 @@
   background-color: #888;
   border-radius: 6px;
 }
+
+.mySwiper .swiper-pagination-bullet {
+  background-color: rgb(205, 205, 205);
+  /* Default bullet color */
+  opacity: 1;
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+  background-color: white;
+  transform: scale(1.3);
+  /* Active bullet color */
+}

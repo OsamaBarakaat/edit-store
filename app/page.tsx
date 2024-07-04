@@ -16,7 +16,7 @@ import Left from "./left";
 import Mid from "./mid";
 import Right from "./right";
 import { useState } from "react";
-import { Provider as ReduxProvider } from 'react-redux';
+import { Provider as ReduxProvider } from "react-redux";
 import { store } from "@/store";
 
 export default function Home() {
@@ -24,26 +24,26 @@ export default function Home() {
   return (
     <main>
       <ReduxProvider store={store}>
-      <div className="flex justify-between gap-4 w-11/12 mt-8 mx-auto">
-        <ResizablePanelGroup direction="horizontal">
-          <ResizablePanel>
-            <Left />
-          </ResizablePanel>
-          <ResizableHandle />
-          <ResizablePanel>
-            <div>
-              <Mid setRightContent={setRightContent} />
-            </div>
-          </ResizablePanel>
-          <ResizableHandle />
-          <ResizablePanel>
-            <Right content={rightContent} />
-          </ResizablePanel>
-        </ResizablePanelGroup>
-      </div>
-      <div className="font-bold text-center text-3xl text-white">
-        Edit ur store
-      </div>
+        <div className="flex flex-col md:flex-row justify-between gap-4 w-full mt-8 mx-auto">
+          <ResizablePanelGroup direction="horizontal">
+            <ResizablePanel>
+              <Left />
+            </ResizablePanel>
+            <ResizableHandle />
+            <ResizablePanel>
+              <div>
+                <Mid setRightContent={setRightContent} />
+              </div>
+            </ResizablePanel>
+            <ResizableHandle />
+            <ResizablePanel>
+              <Right content={rightContent} />
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </div>
+        <div className="font-bold text-center text-3xl text-white">
+          Edit ur store
+        </div>
       </ReduxProvider>
     </main>
   );
